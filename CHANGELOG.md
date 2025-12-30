@@ -1,3 +1,8 @@
+## 1.0.2
+
+- Made all protocol methods in extensions public (`FlutterStreamHandler`, `CXProviderDelegate`, `CallDelegate`)
+- Fixed Swift visibility requirements for protocol conformance
+
 ## 1.0.1
 
 - Added `VoipTwilioSdkPlugin` class for iOS to enable automatic plugin registration via `GeneratedPluginRegistrant`

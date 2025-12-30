@@ -824,13 +824,13 @@ public class TwilioVoiceChannelHandler: NSObject {
 
 // MARK: - FlutterStreamHandler
 extension TwilioVoiceChannelHandler: FlutterStreamHandler {
-    func onListen(withArguments arguments: Any?, eventSink events: @escaping FlutterEventSink) -> FlutterError? {
+    public func onListen(withArguments arguments: Any?, eventSink events: @escaping FlutterEventSink) -> FlutterError? {
         eventSink = events
         logger.info("Event channel listener attached")
         return nil
     }
     
-    func onCancel(withArguments arguments: Any?) -> FlutterError? {
+    public func onCancel(withArguments arguments: Any?) -> FlutterError? {
         eventSink = nil
         logger.info("Event channel listener cancelled")
         return nil
@@ -839,30 +839,30 @@ extension TwilioVoiceChannelHandler: FlutterStreamHandler {
 
 // MARK: - CXProviderDelegate
 extension TwilioVoiceChannelHandler: CXProviderDelegate {
-    func providerDidReset(_ provider: CXProvider) {
+    public func providerDidReset(_ provider: CXProvider) {
         logger.info("providerDidReset")
         audioDevice.isEnabled = false
     }
     
-    func providerDidBegin(_ provider: CXProvider) {
+    public func providerDidBegin(_ provider: CXProvider) {
         logger.info("providerDidBegin")
     }
     
-    func provider(_ provider: CXProvider, didActivate audioSession: AVAudioSession) {
+    public func provider(_ provider: CXProvider, didActivate audioSession: AVAudioSession) {
         logger.info("provider:didActivateAudioSession")
         audioDevice.isEnabled = true
     }
     
-    func provider(_ provider: CXProvider, didDeactivate audioSession: AVAudioSession) {
+    public func provider(_ provider: CXProvider, didDeactivate audioSession: AVAudioSession) {
         logger.info("provider:didDeactivateAudioSession")
         audioDevice.isEnabled = false
     }
     
-    func provider(_ provider: CXProvider, timedOutPerforming action: CXAction) {
+    public func provider(_ provider: CXProvider, timedOutPerforming action: CXAction) {
         logger.info("provider:timedOutPerformingAction")
     }
     
-    func provider(_ provider: CXProvider, perform action: CXStartCallAction) {
+    public func provider(_ provider: CXProvider, perform action: CXStartCallAction) {
         logger.info("provider:performStartCallAction")
         
         // Create call update with DTMF support enabled
@@ -899,7 +899,7 @@ extension TwilioVoiceChannelHandler: CXProviderDelegate {
         action.fulfill()
     }
     
-    func provider(_ provider: CXProvider, perform action: CXEndCallAction) {
+    public func provider(_ provider: CXProvider, perform action: CXEndCallAction) {
         logger.info("provider:performEndCallAction")
         
         if let call = activeCall {
@@ -909,7 +909,7 @@ extension TwilioVoiceChannelHandler: CXProviderDelegate {
         action.fulfill()
     }
     
-    func provider(_ provider: CXProvider, perform action: CXSetMutedCallAction) {
+    public func provider(_ provider: CXProvider, perform action: CXSetMutedCallAction) {
         logger.info("provider:performSetMutedAction")
         
         if let call = activeCall {
@@ -921,7 +921,7 @@ extension TwilioVoiceChannelHandler: CXProviderDelegate {
         action.fulfill()
     }
     
-    func provider(_ provider: CXProvider, perform action: CXPlayDTMFCallAction) {
+    public func provider(_ provider: CXProvider, perform action: CXPlayDTMFCallAction) {
         logger.info("provider:performPlayDTMFCallAction - digit: \(action.digits)")
         
         // Handle DTMF from CallKit (when user presses digits in native call UI)
@@ -944,13 +944,13 @@ extension TwilioVoiceChannelHandler: CXProviderDelegate {
 
 // MARK: - CallDelegate
 extension TwilioVoiceChannelHandler: CallDelegate {
-    func callDidStartRinging(call: Call) {
+    public func callDidStartRinging(call: Call) {
         logger.info(" Call ringing")
         sendEvent("ringing")
         startRingback()
     }
     
-    func callDidConnect(call: Call) {
+    public func callDidConnect(call: Call) {
         logger.info(" Call connected")
         stopRingback()
         sendEvent("connected")
@@ -1014,15 +1014,15 @@ extension TwilioVoiceChannelHandler: CallDelegate {
         }
     }
     
-    func call(call: Call, isReconnectingWithError error: Error) {
+    public func call(call: Call, isReconnectingWithError error: Error) {
         logger.info(" Call reconnecting: \(error.localizedDescription)")
     }
     
-    func callDidReconnect(call: Call) {
+    public func callDidReconnect(call: Call) {
         logger.info(" Call reconnected")
     }
     
-    func callDidFailToConnect(call: Call, error: Error) {
+    public func callDidFailToConnect(call: Call, error: Error) {
         logger.error(" Call failed to connect: \(error.localizedDescription)")
         stopRingback()
         sendEvent("callEnded")
@@ -1042,7 +1042,7 @@ extension TwilioVoiceChannelHandler: CallDelegate {
         pendingSpeakerState = nil
     }
     
-    func callDidDisconnect(call: Call, error: Error?) {
+    public func callDidDisconnect(call: Call, error: Error?) {
         logger.info(" Call disconnected: \(error?.localizedDescription ?? "normal disconnect")")
         stopRingback()
         
