@@ -1,0 +1,30 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MICROPHONE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
+
+    <application>
+        <service
+            android:name="com.example.voip_twilio_sdk.TwilioCallService"
+            android:enabled="true"
+            android:exported="false"
+            android:foregroundServiceType="microphone" />
+        
+        <receiver
+            android:name="com.example.voip_twilio_sdk.TwilioCallReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.example.voip_twilio_sdk.CALL_HANG_UP" />
+                <action android:name="com.example.voip_twilio_sdk.CALL_TOGGLE_MUTE" />
+                <action android:name="com.example.voip_twilio_sdk.CALL_TOGGLE_SPEAKER" />
+            </intent-filter>
+        </receiver>
+    </application>
+</manifest>
+
