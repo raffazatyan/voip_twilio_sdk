@@ -676,8 +676,8 @@ See [Twilio Access Token Documentation](https://www.twilio.com/docs/voice/quicks
 ## 📚 Additional Resources
 
 - [Twilio Voice Documentation](https://www.twilio.com/docs/voice)
-- [Twilio Voice Android SDK](https://www.twilio.com/docs/voice/android)
-- [Twilio Voice iOS SDK](https://www.twilio.com/docs/voice/ios)
+- [Twilio Voice Android SDK](https://www.twilio.com/docs/voice/sdks/android)
+- [Twilio Voice iOS SDK](https://www.twilio.com/docs/voice/sdks/ios)
 - [Flutter Plugin Development](https://flutter.dev/docs/development/packages-and-plugins/developing-packages)
 
 ## 🤝 Contributing
