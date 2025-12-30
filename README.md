@@ -132,7 +132,7 @@ Add the following to your `ios/Runner/Info.plist`:
    - ✅ **Voice over IP** (required for VoIP calls)
    - ✅ **Remote notifications** (optional, for push notifications)
 
-![Background Modes Configuration](doc/images/ios-background-modes.png)
+![Background Modes Configuration](https://github.com/raffazatyan/voip_twilio_sdk/raw/main/doc/images/ios-background-modes.png)
 
 **Note**: If you don't enable "Voice over IP" in Background Modes, the plugin will not be able to make or receive calls. This is a requirement for VoIP functionality on iOS.
 
