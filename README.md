@@ -128,7 +128,6 @@ Add the following to your `ios/Runner/Info.plist`:
 5. Search for and add **Background Modes**
 
 6. In the Background Modes section, check the following options:
-   - ✅ **Audio, AirPlay, and Picture in Picture**
    - ✅ **Voice over IP** (required for VoIP calls)
    - ✅ **Remote notifications** (optional, for push notifications)
 
