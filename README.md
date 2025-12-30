@@ -110,7 +110,33 @@ Add the following to your `ios/Runner/Info.plist`:
 </array>
 ```
 
-#### 2. Pod Installation
+#### 2. Enable Background Modes in Xcode
+
+**⚠️ IMPORTANT**: You must enable "Voice over IP" in Background Modes in Xcode, otherwise calls will not work!
+
+1. Open your project in Xcode:
+   ```bash
+   open ios/Runner.xcworkspace
+   ```
+
+2. Select your **Runner** target in the project navigator
+
+3. Go to the **Signing & Capabilities** tab
+
+4. Click **+ Capability** button
+
+5. Search for and add **Background Modes**
+
+6. In the Background Modes section, check the following options:
+   - ✅ **Audio, AirPlay, and Picture in Picture**
+   - ✅ **Voice over IP** (required for VoIP calls)
+   - ✅ **Remote notifications** (optional, for push notifications)
+
+![Background Modes Configuration](doc/images/ios-background-modes.png)
+
+**Note**: If you don't enable "Voice over IP" in Background Modes, the plugin will not be able to make or receive calls. This is a requirement for VoIP functionality on iOS.
+
+#### 3. Pod Installation
 
 Run the following command in your project root:
 
@@ -124,6 +150,11 @@ The plugin uses:
 - **Twilio Voice iOS SDK 6.0+**
 - **Minimum iOS**: 12.0
 - **CallKit integration** for native iOS call experience
+
+**Troubleshooting**: If calls are not working, verify that:
+- ✅ "Voice over IP" is enabled in Background Modes (see step 2 above)
+- ✅ Microphone permission is granted
+- ✅ `UIBackgroundModes` includes `voip` and `audio` in Info.plist
 
 ## 🎮 Example App
 
@@ -625,8 +656,15 @@ See [Twilio Access Token Documentation](https://www.twilio.com/docs/voice/quicks
 
 ### iOS Issues
 
+#### Calls don't work at all
+- ✅ **CRITICAL**: Verify "Voice over IP" is enabled in Background Modes in Xcode (see iOS Setup step 2)
+- ✅ Check that `UIBackgroundModes` includes `voip` and `audio` in Info.plist
+- ✅ Verify microphone permission is granted
+- ✅ Ensure Twilio Voice SDK is properly installed via CocoaPods
+
 #### CallKit doesn't appear
-- ✅ Verify `UIBackgroundModes` includes `voip` and `audio`
+- ✅ Verify "Voice over IP" is enabled in Background Modes in Xcode
+- ✅ Check that `UIBackgroundModes` includes `voip` and `audio` in Info.plist
 - ✅ Check microphone permission is granted
 - ✅ Ensure Twilio Voice SDK is properly installed via CocoaPods
 

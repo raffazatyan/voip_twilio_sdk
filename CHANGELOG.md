@@ -1,3 +1,9 @@
+## 1.0.3
+
+- Added detailed iOS setup instructions for enabling Background Modes in Xcode
+- Added troubleshooting section for Background Modes configuration
+- Improved documentation with step-by-step guide for "Voice over IP" capability
+
 ## 1.0.2
 
 - Made all protocol methods in extensions public (`FlutterStreamHandler`, `CXProviderDelegate`, `CallDelegate`)
