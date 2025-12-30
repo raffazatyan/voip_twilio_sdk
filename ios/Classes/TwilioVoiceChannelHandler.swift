@@ -5,8 +5,8 @@ import Foundation
 import TwilioVoice
 import os.log
 
-class TwilioVoiceChannelHandler: NSObject {
-    static let shared = TwilioVoiceChannelHandler()
+public class TwilioVoiceChannelHandler: NSObject {
+    public static let shared = TwilioVoiceChannelHandler()
     
     private let logger = Logger(subsystem: "com.example.voip_twilio_sdk", category: "TwilioVoiceChannel")
     
@@ -46,7 +46,7 @@ class TwilioVoiceChannelHandler: NSObject {
         setupAudioRouteChangeObserver()
     }
     
-    func setup(with messenger: FlutterBinaryMessenger) {
+    public func setup(with messenger: FlutterBinaryMessenger) {
         // Skip if already configured
         guard methodChannel == nil else {
             return
@@ -795,7 +795,7 @@ class TwilioVoiceChannelHandler: NSObject {
         logger.info(" Busy tone stopped")
     }
     
-    func cleanup() {
+    public func cleanup() {
         stopRingback()
         stopBusyTone()
         activeCall?.disconnect()
