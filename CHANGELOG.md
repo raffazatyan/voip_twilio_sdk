@@ -1,3 +1,8 @@
+## 1.0.4
+
+- Added screenshot image for iOS Background Modes configuration
+- Improved visual documentation for iOS setup
+
 ## 1.0.3
 
 - Added detailed iOS setup instructions for enabling Background Modes in Xcode
