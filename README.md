@@ -51,7 +51,7 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  voip_twilio_sdk: ^1.0.3
+  voip_twilio_sdk: ^1.0.4
 ```
 
 Then run:
@@ -129,7 +129,6 @@ Add the following to your `ios/Runner/Info.plist`:
 
 6. In the Background Modes section, check the following options:
    - ✅ **Voice over IP** (required for VoIP calls)
-   - ✅ **Remote notifications** (optional, for push notifications)
 
 ![Background Modes Configuration](https://github.com/raffazatyan/voip_twilio_sdk/raw/main/doc/images/ios-background-modes.png)
 
