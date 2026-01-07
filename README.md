@@ -1,4 +1,4 @@
-# 📞 voip_twilio_sdk
+# <img src="https://github.com/raffazatyan/voip_twilio_sdk/raw/main/doc/images/phone-call-icon.png" width="24" height="24" alt="Phone"> voip_twilio_sdk
 
 ![RAFFAZATYAN.DEV Package Publisher](https://github.com/raffazatyan/voip_twilio_sdk/raw/main/doc/images/package-banner.png)
 
