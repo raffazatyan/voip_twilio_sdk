@@ -1,4 +1,4 @@
-# <img src="https://github.com/raffazatyan/voip_twilio_sdk/raw/main/doc/images/phone-call-icon.png" width="36" height="36" alt="Phone"> **Voip Twilio SDK** 
+# <img src="https://github.com/raffazatyan/voip_twilio_sdk/raw/main/doc/images/phone-call-icon.png" width="36" height="36" alt="Phone"> ** Voip Twilio SDK** 
 
 ![RAFFAZATYAN.DEV Package Publisher](https://github.com/raffazatyan/voip_twilio_sdk/raw/main/doc/images/package-banner.png)
 
