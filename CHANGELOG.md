@@ -1,3 +1,7 @@
+## 1.0.11
+
+- Made "Voip Twilio SDK" text bold in README header for better visibility
+
 ## 1.0.10
 
 - Increased phone icon size to 36x36 pixels for better visibility
