@@ -1,8 +1,12 @@
 name: voip_twilio_sdk
 description: A Flutter plugin for Twilio Voice SDK integration. Provides VoIP calling capabilities without requiring native code implementation.
-version: 1.0.4
+version: 1.0.5
 homepage: https://github.com/raffazatyan/voip_twilio_sdk
 repository: https://github.com/raffazatyan/voip_twilio_sdk
+
+screenshots:
+  - description: voip_twilio_sdk - Flutter plugin for Twilio Voice SDK
+    path: screenshots/cover.png
 
 environment:
   sdk: ^3.10.3

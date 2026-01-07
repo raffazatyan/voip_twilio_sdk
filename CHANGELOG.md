@@ -1,3 +1,8 @@
+## 1.0.5
+
+- Added package cover screenshot for pub.dev display
+- Package now displays with visual banner on pub.dev
+
 ## 1.0.4
 
 - Added screenshot image for iOS Background Modes configuration
