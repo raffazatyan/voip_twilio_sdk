@@ -1,3 +1,8 @@
+## 1.0.8
+
+- Fixed header icon display issue - reverted to emoji for better compatibility
+- Package banner and screenshots now properly configured
+
 ## 1.0.7
 
 - Added package publisher banner to README
