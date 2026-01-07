@@ -1,7 +1,7 @@
 ## 1.0.9
 
-- Replaced phone emoji with phone-call-icon image (24x24) in README header
-- Improved visual consistency with custom icon
+- Replaced phone emoji with phone-call-icon image (36x36) in README header
+- Improved visual branding with custom icon
 
 ## 1.0.8
 
