@@ -1,3 +1,8 @@
+## 1.0.6
+
+- Optimized package cover screenshot (reduced size for better pub.dev compatibility)
+- Fixed screenshot display on pub.dev
+
 ## 1.0.5
 
 - Added package cover screenshot for pub.dev display
