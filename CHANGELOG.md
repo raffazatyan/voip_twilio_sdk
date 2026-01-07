@@ -1,3 +1,9 @@
+## 1.0.7
+
+- Added package publisher banner to README
+- Replaced phone emoji with custom phone-call icon image in header
+- Improved visual branding in documentation
+
 ## 1.0.6
 
 - Optimized package cover screenshot (reduced size for better pub.dev compatibility)
