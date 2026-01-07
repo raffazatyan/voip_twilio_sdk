@@ -1,3 +1,8 @@
+## 1.0.9
+
+- Replaced phone emoji with phone-call-icon image (24x24) in README header
+- Improved visual consistency with custom icon
+
 ## 1.0.8
 
 - Fixed header icon display issue - reverted to emoji for better compatibility
