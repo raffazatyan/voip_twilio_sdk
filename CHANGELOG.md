@@ -1,3 +1,7 @@
+## 1.0.10
+
+- Increased phone icon size to 36x36 pixels for better visibility
+
 ## 1.0.9
 
 - Replaced phone emoji with phone-call-icon image (36x36) in README header
