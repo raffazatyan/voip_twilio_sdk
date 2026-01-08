@@ -1,3 +1,12 @@
+## 1.1.0
+
+- **iOS**: Implemented flexible sample rate handling to prevent crashes on different devices and simulators
+  - Replaced hardcoded sample rates (44100.0) with dynamic detection from AVAudioSession
+  - Uses AVAudioSession.sampleRate as primary source, falls back to 48000.0 if invalid
+  - Improved error handling with guard let statements instead of force unwraps
+  - Added logging for sample rate debugging
+  - Prevents crashes on iOS simulators and different device configurations
+
 ## 1.0.3 - 1.0.11 
 
 - Added detailed iOS setup instructions for enabling Background Modes in Xcode

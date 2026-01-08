@@ -53,7 +53,7 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  voip_twilio_sdk: ^1.0.11
+  voip_twilio_sdk: ^1.1.0
 ```
 
 Then run:

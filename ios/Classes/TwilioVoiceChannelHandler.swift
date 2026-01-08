@@ -504,6 +504,20 @@ public class TwilioVoiceChannelHandler: NSObject {
     }
     
     /**
+     * Gets a compatible sample rate from AVAudioSession.
+     * Uses AVAudioSession.sampleRate as primary source, falls back to 48000.0 if invalid.
+     *
+     * This avoids hardcoded sample rates that can cause crashes on different devices/simulators.
+     */
+    private func getCompatibleSampleRate() -> Double {
+        let audioSession = AVAudioSession.sharedInstance()
+        let sampleRate = audioSession.sampleRate
+        
+        // Use sample rate if valid (> 0), otherwise fallback to 48000.0
+        return sampleRate > 0 ? sampleRate : 48000.0
+    }
+    
+    /**
      * Starts GSM ringback tone generation.
      *
      * GSM ringback tone specification:
@@ -533,10 +547,12 @@ public class TwilioVoiceChannelHandler: NSObject {
             try audioSession.setActive(true, options: [])
             
             // GSM ringback tone parameters
-            let sampleRate: Double = 44100.0
+            let sampleRate = getCompatibleSampleRate()
             let frequency: Double = 425.0 // Hz - GSM ringback tone frequency
             let toneDuration: Double = 1.0 // 1 second ON
             let pauseDuration: Double = 3.0 // 3 seconds OFF
+            
+            logger.info(" Using sample rate: \(sampleRate) Hz for ringback tone")
             
             // Create audio engine
             let engine = AVAudioEngine()
@@ -546,17 +562,23 @@ public class TwilioVoiceChannelHandler: NSObject {
             engine.attach(playerNode)
             
             // Create audio format (mono, 16-bit PCM)
-            let format = AVAudioFormat(commonFormat: .pcmFormatInt16,
-                                     sampleRate: sampleRate,
-                                     channels: 1,
-                                     interleaved: false)!
+            guard let format = AVAudioFormat(commonFormat: .pcmFormatInt16,
+                                            sampleRate: sampleRate,
+                                            channels: 1,
+                                            interleaved: false) else {
+                logger.error("❌ Failed to create audio format with sample rate: \(sampleRate)")
+                return
+            }
             
             // Connect player node to main mixer
             engine.connect(playerNode, to: engine.mainMixerNode, format: format)
             
             // Generate tone buffer (1 second of 425 Hz sine wave)
             let toneFrameCount = AVAudioFrameCount(sampleRate * toneDuration)
-            let toneBuffer = AVAudioPCMBuffer(pcmFormat: format, frameCapacity: toneFrameCount)!
+            guard let toneBuffer = AVAudioPCMBuffer(pcmFormat: format, frameCapacity: toneFrameCount) else {
+                logger.error("❌ Failed to create tone buffer with sample rate: \(sampleRate)")
+                return
+            }
             toneBuffer.frameLength = toneFrameCount
             
             // Generate sine wave samples
@@ -574,7 +596,10 @@ public class TwilioVoiceChannelHandler: NSObject {
             
             // Generate silence buffer (3 seconds)
             let pauseFrameCount = AVAudioFrameCount(sampleRate * pauseDuration)
-            let pauseBuffer = AVAudioPCMBuffer(pcmFormat: format, frameCapacity: pauseFrameCount)!
+            guard let pauseBuffer = AVAudioPCMBuffer(pcmFormat: format, frameCapacity: pauseFrameCount) else {
+                logger.error("❌ Failed to create pause buffer with sample rate: \(sampleRate)")
+                return
+            }
             pauseBuffer.frameLength = pauseFrameCount
             
             // Fill silence buffer with zeros
@@ -685,11 +710,13 @@ public class TwilioVoiceChannelHandler: NSObject {
             try audioSession.setActive(true, options: [])
             
             // Busy tone parameters
-            let sampleRate: Double = 44100.0
+            let sampleRate = getCompatibleSampleRate()
             let frequency: Double = 425.0 // Hz - same as ringback
             let beepDuration: Double = 0.2 // 0.2 seconds per beep
             let pauseDuration: Double = 0.1 // 0.1 seconds pause between beeps
             let beepCount = 3 // 3 beeps total
+            
+            logger.info(" Using sample rate: \(sampleRate) Hz for busy tone")
             
             // Create audio engine
             let engine = AVAudioEngine()
@@ -699,17 +726,23 @@ public class TwilioVoiceChannelHandler: NSObject {
             engine.attach(playerNode)
             
             // Create audio format (mono, 16-bit PCM)
-            let format = AVAudioFormat(commonFormat: .pcmFormatInt16,
-                                     sampleRate: sampleRate,
-                                     channels: 1,
-                                     interleaved: false)!
+            guard let format = AVAudioFormat(commonFormat: .pcmFormatInt16,
+                                            sampleRate: sampleRate,
+                                            channels: 1,
+                                            interleaved: false) else {
+                logger.error("❌ Failed to create audio format with sample rate: \(sampleRate)")
+                return
+            }
             
             // Connect player node to main mixer
             engine.connect(playerNode, to: engine.mainMixerNode, format: format)
             
             // Generate beep buffer (0.2 seconds of 425 Hz sine wave)
             let beepFrameCount = AVAudioFrameCount(sampleRate * beepDuration)
-            let beepBuffer = AVAudioPCMBuffer(pcmFormat: format, frameCapacity: beepFrameCount)!
+            guard let beepBuffer = AVAudioPCMBuffer(pcmFormat: format, frameCapacity: beepFrameCount) else {
+                logger.error("❌ Failed to create beep buffer with sample rate: \(sampleRate)")
+                return
+            }
             beepBuffer.frameLength = beepFrameCount
             
             // Generate sine wave samples for beep
@@ -727,7 +760,10 @@ public class TwilioVoiceChannelHandler: NSObject {
             
             // Generate silence buffer (0.1 seconds)
             let pauseFrameCount = AVAudioFrameCount(sampleRate * pauseDuration)
-            let pauseBuffer = AVAudioPCMBuffer(pcmFormat: format, frameCapacity: pauseFrameCount)!
+            guard let pauseBuffer = AVAudioPCMBuffer(pcmFormat: format, frameCapacity: pauseFrameCount) else {
+                logger.error("❌ Failed to create pause buffer with sample rate: \(sampleRate)")
+                return
+            }
             pauseBuffer.frameLength = pauseFrameCount
             
             // Fill silence buffer with zeros
