@@ -1,3 +1,7 @@
+## 1.2.1
+
+- **Documentation**: Added badges (version, license, platform) to README header for better visibility
+
 ## 1.2.0
 
 - **Stable Release**: Re-release of 1.1.0 codebase with flexible sample rate handling
