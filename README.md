@@ -1,5 +1,9 @@
 # <img src="https://github.com/raffazatyan/voip_twilio_sdk/raw/main/doc/images/phone-call-icon.png" width="36" height="36" alt="Phone">  **Voip Twilio SDK** 
 
+[![Pub Version](https://img.shields.io/pub/v/voip_twilio_sdk)](https://pub.dev/packages/voip_twilio_sdk)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Platform](https://img.shields.io/badge/platform-iOS%20%7C%20Android-lightgrey)](https://flutter.dev)
+
 ![RAFFAZATYAN.DEV Package Publisher](https://github.com/raffazatyan/voip_twilio_sdk/raw/main/doc/images/package-banner.png)
 
 A comprehensive Flutter plugin for Twilio Voice SDK integration. This plugin provides complete VoIP calling capabilities using Twilio Voice SDK **without requiring any native code implementation**.
