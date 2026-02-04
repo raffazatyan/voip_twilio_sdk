@@ -35,6 +35,7 @@ class TwilioVoiceChannelService {
         'from': callOptions.from,
         'to': callOptions.to,
         'token': callOptions.token,
+        ...?callOptions.extraOptions,
       });
     } on PlatformException {
       // Handle error if needed

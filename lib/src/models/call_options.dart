@@ -9,10 +9,13 @@ class CallOptions {
   /// Twilio access token for authentication
   final String token;
 
+  /// Optional parameters for the call
+  final Map<String, String>? extraOptions;
+
   const CallOptions({
     required this.from,
     required this.to,
     required this.token,
+    this.extraOptions,
   });
 }
-
