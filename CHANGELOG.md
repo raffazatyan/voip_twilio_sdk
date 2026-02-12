@@ -1,3 +1,7 @@
+## 1.2.2
+
+- **CallOptions**: Added support for optional parameters via `extraOptions` (Map<String, String>?)
+
 ## 1.2.1
 
 - **Documentation**: Added badges (version, license, platform) to README header for better visibility
