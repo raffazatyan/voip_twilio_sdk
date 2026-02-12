@@ -253,7 +253,18 @@ public class TwilioVoiceChannelHandler: NSObject {
         let fromWithPrefix = from.hasPrefix("client:") ? from : "client:\(from)"
         callOptions["From"] = fromWithPrefix
         callOptions["To"] = to
-        
+
+        // Add any extra options passed from Dart (excluding reserved keys)
+        let reservedKeys: Set<String> = ["from", "to", "token"]
+        for (key, value) in args {
+            if let keyStr = key as? String,
+               let valueStr = value as? String,
+               !reservedKeys.contains(keyStr) {
+                callOptions[keyStr] = valueStr
+                logger.info("Added extra option: \(keyStr) = \(valueStr)")
+            }
+        }
+
         // Store call options and token for later use
         objc_setAssociatedObject(self, &AssociatedKeys.callOptions, callOptions, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         objc_setAssociatedObject(self, &AssociatedKeys.accessToken, token, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)

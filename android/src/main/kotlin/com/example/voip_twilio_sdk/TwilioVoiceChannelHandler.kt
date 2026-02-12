@@ -154,7 +154,18 @@ class TwilioVoiceChannelHandler private constructor() {
             Log.d(TAG, "Added client: prefix to From parameter: $fromWithPrefix")
             
             params["To"] = to
-            
+
+            // Add any extra options passed from Dart (excluding reserved keys)
+            val reservedKeys = setOf("from", "to", "token")
+            args?.forEach { (key, value) ->
+                val keyStr = key as? String
+                val valueStr = value as? String
+                if (keyStr != null && valueStr != null && !reservedKeys.contains(keyStr)) {
+                    params[keyStr] = valueStr
+                    Log.d(TAG, "Added extra option: $keyStr = $valueStr")
+                }
+            }
+
             // Save "To" phone number for notification
             callContactPhone = to
             Log.d(TAG, "Saved contact phone for notification: $to")
