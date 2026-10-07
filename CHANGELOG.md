@@ -1,3 +1,7 @@
+## 1.2.3
+
+- Maintenance release
+
 ## 1.2.2
 
 - **CallOptions**: Added support for optional parameters via `extraOptions` (Map<String, String>?)
